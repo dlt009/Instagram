@@ -8,21 +8,28 @@
 
 import UIKit
 import Parse
+import ParseUI
 
 class PostCell: UITableViewCell {
 
     @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var postImageView: UIImageView!
+    @IBOutlet weak var postImageView: PFImageView!
     @IBOutlet weak var captionLabel: UILabel!
     
-    @IBOutlet weak var photoView: PFImageView!
+    //@IBOutlet weak var photoView: PFImageView!
     
-    var instagramPost: PFObject! {
+    var post: Post! {
         didSet {
-            self.photoView.file = instagramPost["image"] as? PFFile
-            self.photoView.loadInBackground()
+            let user = post["author"] as? PFUser
+            self.usernameLabel.text = user?.username
+            
+            self.captionLabel.text = post["caption"] as? String
+            
+            self.postImageView.file = post["media"] as? PFFile
+            self.postImageView.loadInBackground()
         }
     }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

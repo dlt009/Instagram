@@ -27,9 +27,9 @@ class CaptureViewController: UIViewController, UIImagePickerControllerDelegate, 
             if success {
                 print("Successful post")
                 self.dismiss(animated: true, completion: nil)
-                let FeedViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! FeedViewController
+                /*let FeedViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! FeedViewController
                 
-                self.navigationController?.pushViewController(FeedViewController, animated: true)
+                self.navigationController?.pushViewController(FeedViewController, animated: true)*/
             }
             else {
                 print("Problem saving post")
@@ -81,7 +81,7 @@ class CaptureViewController: UIViewController, UIImagePickerControllerDelegate, 
             photo = originalImage
         }
         
-        editedPhoto = resize(image: photo, newSize: CGSize(width: 100, height:100))
+        editedPhoto = resize(image: photo, newSize: CGSize(width: 300, height:300))
         
         // Dismiss UIImagePickerController to go back to your original view controller
         self.dismiss(animated: true, completion: nil)

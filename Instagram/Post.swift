@@ -7,6 +7,7 @@
 //
 import UIKit
 import Parse
+import ParseUI
 
 class Post: PFObject, PFSubclassing {
     @NSManaged var media : PFFile
@@ -63,4 +64,6 @@ class Post: PFObject, PFSubclassing {
         }
         return nil
     }
+    
 }
+
