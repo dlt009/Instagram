@@ -14,7 +14,6 @@ class CaptureViewController: UIViewController, UIImagePickerControllerDelegate, 
     var editedPhoto: UIImage!
     //var vc: UIImagePickerController!
     
-    
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var captionTextField: UITextField!
     
