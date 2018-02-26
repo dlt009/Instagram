@@ -10,6 +10,10 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+    @IBAction func logout(_ sender: Any) {
+        NotificationCenter.default.post(name: NSNotification.Name("didLogout"), object: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
