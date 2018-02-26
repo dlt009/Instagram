@@ -95,7 +95,7 @@
         <!--Feed View Controller-->
         <scene sceneID="JYS-go-9ic">
             <objects>
-                <viewController id="ZMO-gj-hAr" customClass="FeedViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="ZMO-gj-hAr" customClass="FeedViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GJ7-qb-KCw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -152,15 +152,71 @@
                     <view key="view" contentMode="scaleToFill" id="sqT-ED-WRu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JYt-Od-yha">
+                                <rect key="frame" x="8" y="72" width="359" height="200"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="dH3-cM-58o"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add a caption here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xGR-Cy-hup">
+                                <rect key="frame" x="8" y="318" width="359" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="K31-g0-0P8"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q8L-Yq-wni">
+                                <rect key="frame" x="156" y="358" width="62" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="postPhoto:" destination="dL3-I7-bg6" eventType="touchUpInside" id="46T-KA-da1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ue-7c-A80">
+                                <rect key="frame" x="8" y="280" width="359" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="IYQ-Oh-yY6"/>
+                                </constraints>
+                                <state key="normal" title="Upload Photo from Camera or Gallery ">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="uploadPhoto:" destination="dL3-I7-bg6" eventType="touchUpInside" id="lwQ-pb-SCk"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ZO5-DL-9Qn" firstAttribute="trailing" secondItem="JYt-Od-yha" secondAttribute="trailing" constant="8" id="1em-6w-vyw"/>
+                            <constraint firstItem="Q8L-Yq-wni" firstAttribute="centerX" secondItem="ZO5-DL-9Qn" secondAttribute="centerX" id="BeC-uv-ysY"/>
+                            <constraint firstItem="xGR-Cy-hup" firstAttribute="leading" secondItem="ZO5-DL-9Qn" secondAttribute="leading" constant="8" id="I0Z-if-KdW"/>
+                            <constraint firstItem="xGR-Cy-hup" firstAttribute="top" secondItem="9Ue-7c-A80" secondAttribute="bottom" constant="8" id="IPC-91-FMN"/>
+                            <constraint firstItem="ZO5-DL-9Qn" firstAttribute="trailing" secondItem="9Ue-7c-A80" secondAttribute="trailing" constant="8" id="VWM-e0-RXA"/>
+                            <constraint firstItem="Q8L-Yq-wni" firstAttribute="top" secondItem="xGR-Cy-hup" secondAttribute="bottom" constant="10" id="b9b-v9-e0C"/>
+                            <constraint firstItem="ZO5-DL-9Qn" firstAttribute="trailing" secondItem="xGR-Cy-hup" secondAttribute="trailing" constant="8" id="g8D-hu-lQa"/>
+                            <constraint firstItem="JYt-Od-yha" firstAttribute="top" secondItem="ZO5-DL-9Qn" secondAttribute="top" constant="8" id="m9k-cG-mia"/>
+                            <constraint firstItem="9Ue-7c-A80" firstAttribute="leading" secondItem="ZO5-DL-9Qn" secondAttribute="leading" constant="8" id="mOw-2e-TR9"/>
+                            <constraint firstItem="JYt-Od-yha" firstAttribute="leading" secondItem="ZO5-DL-9Qn" secondAttribute="leading" constant="8" id="pLU-Lj-0sn"/>
+                            <constraint firstItem="9Ue-7c-A80" firstAttribute="top" secondItem="JYt-Od-yha" secondAttribute="bottom" constant="8" id="u6H-Yt-q5r"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ZO5-DL-9Qn"/>
                     </view>
                     <navigationItem key="navigationItem" id="idM-eJ-9BC"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="captionTextField" destination="xGR-Cy-hup" id="Jd2-we-gEl"/>
+                        <outlet property="photoImageView" destination="JYt-Od-yha" id="JKc-2B-LkL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jKu-RU-DIl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2580" y="428"/>
+            <point key="canvasLocation" x="2580" y="427.73613193403304"/>
         </scene>
         <!--Instagram-->
         <scene sceneID="ihp-EW-YZX">
