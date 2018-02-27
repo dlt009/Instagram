@@ -65,5 +65,61 @@ class Post: PFObject, PFSubclassing {
         return nil
     }
     
+    class func lowestReached(unit: String, value: Double) -> Bool {
+        let value = Int(round(value));
+        switch unit {
+        case "sec":
+            return value < 60;
+        case "min":
+            return value < 60;
+        case "hr":
+            return value < 24;
+        case "day":
+            return value < 7;
+        case "wk":
+            return value < 4;
+        default: // include "w". cannot reduce weeks
+            return true;
+        }
+    }
+    
+    class func localizedDate(date: NSDate) -> (unit: String, timeSince: Double) {
+        var unit = "/";
+        let formatter = DateFormatter();
+        formatter.dateFormat = "M";
+        let timeSince = Double(formatter.string(from: date as Date))!;
+        formatter.dateFormat = "d/yy";
+        unit += formatter.string(from: date as Date);
+        return (unit, timeSince);
+    }
+    
+    class func timeSince(date: NSDate) -> String {
+        var unit = "sec";
+        var timeSince = abs(date.timeIntervalSinceNow as Double);
+        let reductionComplete = lowestReached(unit: unit, value: timeSince);
+        
+        while(reductionComplete != true){
+            unit = "min";
+            timeSince = round(timeSince / 60);
+            if lowestReached(unit:unit, value: timeSince) { break; }
+            
+            unit = "hr";
+            timeSince = round(timeSince / 60);
+            if lowestReached(unit:unit, value: timeSince) { break; }
+            
+            unit = "day";
+            timeSince = round(timeSince / 24);
+            if lowestReached(unit:unit, value: timeSince) { break; }
+            
+            unit = "wk";
+            timeSince = round(timeSince / 7);
+            if lowestReached(unit:unit, value: timeSince) { break; }
+            
+            (unit, timeSince) = localizedDate(date:date);   break;
+        }
+        
+        let value = Int(timeSince);
+        return "\(value) \(unit)";
+    }
 }
 

@@ -12,6 +12,7 @@ import Parse
 class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var posts: [PFObject]?
+    var refreshControl: UIRefreshControl!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -23,9 +24,13 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.delegate = self
         
         // Auto size row height based on cell autolayout constraints
-        tableView.rowHeight = UITableViewAutomaticDimension
+        //tableView.rowHeight = UITableViewAutomaticDimension
         // Provide an estimated row height. Used for calculating scroll indicator
         tableView.estimatedRowHeight = 500
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(didPullToRefresh(_:)), for: UIControlEvents.valueChanged)
+        tableView.insertSubview(refreshControl, at: 0)
         
         requestPosts()
         
@@ -64,6 +69,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let query = PFQuery(className: "Post")
         query.order(byDescending: "createdAt")
         query.includeKey("author")
+        
         query.limit = 20
         
         query.findObjectsInBackground { (posts: [PFObject]?, error: Error?) -> Void in
@@ -81,6 +87,22 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
+    
+    @objc func didPullToRefresh(_ refreshControl: UIRefreshControl) {
+        requestPosts()
+        refreshControl.endRefreshing()
+    }
+    
+    
+    // Respond to user clicks on cells
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let cell = sender as! UITableViewCell
+        if let indexPath = tableView.indexPath(for: cell) {
+            let post = posts![indexPath.row]
+            let detailsViewController = segue.destination as! DetailsViewController
+            detailsViewController.post = post
+        }
+    }
     
     /*
     // MARK: - Navigation
