@@ -78,7 +78,7 @@ class Post: PFObject, PFSubclassing {
             return value < 7;
         case "wk":
             return value < 4;
-        default: // include "w". cannot reduce weeks
+        default:
             return true;
         }
     }

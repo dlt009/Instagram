@@ -27,9 +27,9 @@ class CaptureViewController: UIViewController, UIImagePickerControllerDelegate, 
             if success {
                 print("Successful post")
                 self.dismiss(animated: true, completion: nil)
-                /*let FeedViewController = self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! FeedViewController
                 
-                self.navigationController?.pushViewController(FeedViewController, animated: true)*/
+                //self.tabBarController?.selectedIndex = 0;
+                NotificationCenter.default.post(name: NSNotification.Name("didPost"), object: nil)
             }
             else {
                 print("Problem saving post")
